@@ -4,9 +4,11 @@ import Footer from "./components/Footer";
 
 const Root = () => {
   return (
-    <div>
-      <Navbar></Navbar>
-      <Outlet></Outlet>
+    <div className="w-full overflow-x-hidden flex flex-col justify-between min-h-screen">
+      <div className="w-full">
+        <Navbar></Navbar>
+        <Outlet />
+      </div>
       <Footer></Footer>
     </div>
   );

@@ -1,9 +1,21 @@
 import { Link, NavLink } from "react-router-dom";
+import { useContext } from "react";
 import logo from "../assets/logo-color-removebg-preview.png";
+import { AuthContext } from "../providers/AuthProvider";
+import { toast } from "react-toastify";
 const defaultStyle = "text-xl text-center px-5 py-1";
 const activeStyle =
   "bg-clip-text text-transparent bg-gradient-to-r from-[#73368c] to-[#ffe5de] font-bold underline";
 const Navbar = () => {
+  const { user, logoutUser } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logoutUser()
+      .then(() => toast.success("LOGGED OUT SUCCESSFULLY"))
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const l1 = (
     <>
       <NavLink
@@ -35,22 +47,26 @@ const Navbar = () => {
 
   const l2 = (
     <>
-      <NavLink
-        className={({ isActive }) =>
-          `${defaultStyle} btn ${isActive && activeStyle}`
-        }
-        to="/login"
-      >
-        Login
-      </NavLink>
-      <NavLink
-        className={({ isActive }) =>
-          `${defaultStyle} btn ${isActive && activeStyle}`
-        }
-        to="/register"
-      >
-        Register
-      </NavLink>
+      {!user && (
+        <>
+          <NavLink
+            className={({ isActive }) =>
+              `${defaultStyle} btn ${isActive && activeStyle}`
+            }
+            to="/login"
+          >
+            Login
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              `${defaultStyle} btn ${isActive && activeStyle}`
+            }
+            to="/register"
+          >
+            Register
+          </NavLink>
+        </>
+      )}
     </>
   );
 
@@ -93,6 +109,22 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{l1}</ul>
         </div>
         <div className="navbar-end flex gap-3">{l2}</div>
+        {user && (
+          <div className="flex flex-col md:flex-row gap-5 justify-center items-center">
+            <div className="flex flex-row justify-center items-center gap-5 ">
+              <img
+                className="w-10 h-10 rounded-full border-2 border-blue-500 p-0.5"
+                src={user?.photoURL}
+              />
+              <div>{user?.displayName}</div>
+            </div>
+            <div>
+              <button className="btn btn-error" onClick={handleLogOut}>
+                Logout
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
