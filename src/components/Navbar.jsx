@@ -38,6 +38,14 @@ const Navbar = () => {
         className={({ isActive }) =>
           `${defaultStyle} ${isActive && activeStyle}`
         }
+        to="/addProduct"
+      >
+        Add Product
+      </NavLink>
+      <NavLink
+        className={({ isActive }) =>
+          `${defaultStyle} ${isActive && activeStyle}`
+        }
         to="/myCart"
       >
         My cart
