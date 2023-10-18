@@ -14,6 +14,7 @@ import MyCart from "./components/MyCart";
 import AuthProvider from "./providers/AuthProvider";
 import PrivateRoute from "./components/routes/PrivateRoute";
 import AddProduct from "./components/AddProduct";
+import BrandProducts from "./components/brandComp/BrandProducts";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,6 +32,12 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/brandProducts/:brand",
+        element: <BrandProducts></BrandProducts>,
+        loader: async ({ params }) =>
+          fetch(`http://localhost:5000/product/${params.brand}`),
       },
       {
         path: "/profile",
