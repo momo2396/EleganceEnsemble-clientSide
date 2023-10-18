@@ -11,6 +11,7 @@ import Login from "./components/loginComp/Login";
 import Register from "./components/registerComp/Register";
 import Profile from "./components/Profile";
 import MyCart from "./components/MyCart";
+import AuthProvider from "./providers/AuthProvider";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -43,7 +44,20 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
-    <ToastContainer />
+    <AuthProvider>
+      <RouterProvider router={router} />
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+    </AuthProvider>
   </React.StrictMode>
 );
