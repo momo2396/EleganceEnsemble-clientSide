@@ -119,7 +119,10 @@ const Navbar = () => {
               <div>{user?.displayName}</div>
             </div>
             <div>
-              <button className="btn btn-error" onClick={handleLogOut}>
+              <button
+                className="btn bg-[#a294cd] border-[#a294cd]"
+                onClick={handleLogOut}
+              >
                 Logout
               </button>
             </div>
