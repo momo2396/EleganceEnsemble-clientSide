@@ -3,11 +3,10 @@ import { Link } from "react-router-dom";
 const Brand = ({ b }) => {
   const { brand, image } = b;
   const handleBrand = (brand) => {
-    // console.log(brand);
     fetch(`http://localhost:5000/product/${brand}`)
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+      .then(() => {
+        // console.log(data);
       });
   };
   return (

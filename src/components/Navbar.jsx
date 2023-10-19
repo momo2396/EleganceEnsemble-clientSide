@@ -79,8 +79,8 @@ const Navbar = () => {
   );
 
   return (
-    <div>
-      <div className="navbar bg-base-100">
+    <div className="py-10 px-5 navbar bg-base-100 flex flex-col lg:flex-row justify-between items-center">
+      <div>
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -106,37 +106,41 @@ const Navbar = () => {
               {l1}
             </ul>
           </div>
-          <img src={logo} className="h-32"></img>
-          <Link to="/" className="font-bold normal-case text-xl lg:text-3xl">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#a294cd] to-[#ffe5de]">
-              Elegance Ensemble
-            </span>
-          </Link>
-        </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{l1}</ul>
-        </div>
-        <div className="navbar-end flex gap-3">{l2}</div>
-        {user && (
-          <div className="flex flex-col md:flex-row gap-5 justify-center items-center">
-            <div className="flex flex-row justify-center items-center gap-5 ">
-              <img
-                className="w-10 h-10 rounded-full border-2 border-blue-500 p-0.5"
-                src={user?.photoURL}
-              />
-              <div>{user?.displayName}</div>
-            </div>
-            <div>
-              <button
-                className="btn bg-[#a294cd] border-[#a294cd]"
-                onClick={handleLogOut}
-              >
-                Logout
-              </button>
-            </div>
+          <div className="flex flex-row gap-3">
+            <img src={logo} className="h-32"></img>
+            <Link to="/" className="font-bold normal-case text-xl lg:text-3xl">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#a294cd] to-[#ffe5de]">
+                Elegance Ensemble
+              </span>
+            </Link>
           </div>
-        )}
+        </div>
       </div>
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal px-1">{l1}</ul>
+      </div>
+      <div className="flex flex-col lg:flex-row navbar-end  py-5 lg:py-0 gap-3">
+        {l2}
+      </div>
+      {user && (
+        <div className="flex flex-col md:flex-row gap-5 justify-center items-center">
+          <div className="flex flex-row justify-center items-center gap-5 ">
+            <img
+              className="w-10 h-10 rounded-full border-2 border-blue-500 p-0.5"
+              src={user?.photoURL}
+            />
+            <div>{user?.displayName}</div>
+          </div>
+          <div>
+            <button
+              className="btn bg-[#a294cd] border-[#a294cd]"
+              onClick={handleLogOut}
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
