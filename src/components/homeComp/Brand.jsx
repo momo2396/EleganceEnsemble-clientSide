@@ -20,7 +20,9 @@ const Brand = ({ b }) => {
             <img className="w-full h-44" src={image} />
           </figure>
           <div className="card-body">
-            <h2 className="text-center mt-10 text-2xl font-serif">{brand}</h2>
+            <h2 className="text-center text-black  mt-10 text-2xl font-serif">
+              {brand}
+            </h2>
           </div>
         </div>
       </Link>

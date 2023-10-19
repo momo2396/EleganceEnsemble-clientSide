@@ -1,11 +1,41 @@
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Details = () => {
-  const products = useLoaderData();
-  const { id } = useParams();
-  const product = products.find((product) => product._id == id);
+  const product = useLoaderData();
   const { _id, name, image, price, brand, type, rating, details } = product;
-  const handleUpdate = (_id) => {};
+  const { user } = useContext(AuthContext);
+  const handleAddtoCart = async (_id) => {
+    const res = await fetch(
+      `http://localhost:5000/add-to-cart?email=${user.email}&id=${_id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    );
+    const data = await res.json();
+    console.log(data);
+    if (data.success) {
+      Swal.fire({
+        title: "Success!",
+        text: data.message,
+        icon: "success",
+        confirmButtonText: "Cool",
+      });
+    } else {
+      Swal.fire({
+        title: "Error!",
+        text: data.message,
+        icon: "error",
+        confirmButtonText: "Close",
+      });
+    }
+  };
+
   return (
     <div className="max-w-[1440px] mx-auto px-5 py-20">
       <div className=" p-5 bg-[#ffe5de]">
@@ -25,17 +55,22 @@ const Details = () => {
           <p className="text-lg">
             Rating of Product: <span className="font-bold">{rating}.00</span>
           </p>
-          <Link
-            to={`/updateProduct/${_id}`}
-            className="card-actions justify-end"
-          >
-            <button
-              onClick={() => handleUpdate(_id)}
-              className="btn btn-primary"
+          <div className="flex flex-col md:flex-row gap-5  justify-end">
+            <div className="card-actions justify-end">
+              <button
+                onClick={() => handleAddtoCart(_id)}
+                className="btn btn-primary"
+              >
+                Add to Cart
+              </button>
+            </div>
+            <Link
+              to={`/updateProduct/${_id}`}
+              className="card-actions justify-end"
             >
-              Update Details
-            </button>
-          </Link>
+              <button className="btn btn-primary">Update Details</button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

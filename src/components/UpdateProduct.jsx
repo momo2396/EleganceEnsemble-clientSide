@@ -29,7 +29,6 @@ const UpdateProduct = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
-          console.log("uddate");
           Swal.fire({
             title: "Success!",
             text: "You updated the product!",

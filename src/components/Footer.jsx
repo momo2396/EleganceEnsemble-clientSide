@@ -1,8 +1,15 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Footer = () => {
+  const { dark } = useContext(AuthContext);
   return (
-    <footer className="text-xl footer footer-center p-10 bg-base-200 text-base-content rounded">
+    <footer
+      className={`text-xl footer footer-center p-10 ${
+        dark ? "bg-base-content text-base-200" : "bg-base-200 text-base-content"
+      } rounded`}
+    >
       <nav className="grid grid-flow-col gap-4">
         <Link to="/" className="link link-hover">
           Home

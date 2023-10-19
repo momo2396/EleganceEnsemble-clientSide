@@ -10,7 +10,7 @@ import ErrorPage from "./components/ErrorPage";
 import Login from "./components/loginComp/Login";
 import Register from "./components/registerComp/Register";
 import Profile from "./components/Profile";
-import MyCart from "./components/MyCart";
+import MyCart from "./components/cartComp/MyCart";
 import AuthProvider from "./providers/AuthProvider";
 import PrivateRoute from "./components/routes/PrivateRoute";
 import AddProduct from "./components/AddProduct";
@@ -56,7 +56,8 @@ const router = createBrowserRouter([
             <Details></Details>
           </PrivateRoute>
         ),
-        loader: async () => fetch("http://localhost:5000/product"),
+        loader: async ({ params }) =>
+          fetch(`http://localhost:5000/single-product?id=${params.id}`),
       },
       {
         path: "/myCart",
@@ -81,7 +82,8 @@ const router = createBrowserRouter([
             <UpdateProduct></UpdateProduct>
           </PrivateRoute>
         ),
-        loader: async () => fetch("http://localhost:5000/product"),
+        loader: async ({ params }) =>
+          fetch(`http://localhost:5000/single-product?id=${params.id}`),
       },
     ],
   },
