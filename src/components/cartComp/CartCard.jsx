@@ -6,25 +6,39 @@ const CartCard = ({ prod, setCount }) => {
   const { user } = useContext(AuthContext);
   const [product, setProduct] = useState(null);
   useEffect(() => {
-    fetch(`http://localhost:5000/single-product?id=${prod}`)
+    fetch(
+      `https://brand-shop-server-side-b8a10.vercel.app/single-product?id=${prod}`
+    )
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, []);
   const handleDelete = async (id) => {
-    const res = await fetch(
-      `http://localhost:5000/delete-from-cart?id=${id}&email=${user?.email}`,
-      {
-        method: "DELETE",
-      }
-    );
-    const data = await res.json();
     Swal.fire({
-      title: "Success!",
-      text: data.message,
-      icon: "success",
-      confirmButtonText: "Cool",
+      title: "Do you want to save the changes?",
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: "Delete",
+      denyButtonText: `Cancel`,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await fetch(
+          `https://brand-shop-server-side-b8a10.vercel.app/delete-from-cart?id=${id}&email=${user?.email}`,
+          {
+            method: "DELETE",
+          }
+        );
+        const data = await res.json();
+        Swal.fire({
+          title: "Success!",
+          text: data.message,
+          icon: "success",
+          confirmButtonText: "Cool",
+        });
+        setCount((prev) => prev + 1);
+      } else if (result.isDenied) {
+        Swal.fire("Deletion Canceled", "", "info");
+      }
     });
-    setCount((prev) => prev + 1);
   };
   return (
     <div className="px-3 py-5 card lg:card-side bg-[#ac9ed5] shadow-xl">

@@ -1,4 +1,4 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const UpdateProduct = () => {
@@ -17,7 +17,7 @@ const UpdateProduct = () => {
     const rating = form.rating.value;
     const details = form.details.value;
     const updateProduct = { name, brand, type, image, price, rating, details };
-    fetch(`http://localhost:5000/product/${_id}`, {
+    fetch(`https://brand-shop-server-side-b8a10.vercel.app/product/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

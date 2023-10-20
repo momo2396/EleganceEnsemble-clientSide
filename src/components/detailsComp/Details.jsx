@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 
@@ -9,7 +9,7 @@ const Details = () => {
   const { user } = useContext(AuthContext);
   const handleAddtoCart = async (_id) => {
     const res = await fetch(
-      `http://localhost:5000/add-to-cart?email=${user.email}&id=${_id}`,
+      `https://brand-shop-server-side-b8a10.vercel.app/add-to-cart?email=${user.email}&id=${_id}`,
       {
         method: "POST",
         headers: {
@@ -49,26 +49,19 @@ const Details = () => {
             Costemic Type: <span className="font-bold">{type}</span>
           </p>
           <p className="text-lg">
-            Price of Product: <span className="font-bold">{price}</span>
+            Price of Product: $ <span className="font-bold">{price}</span>
           </p>
           <p className="text-lg">
             Rating of Product: <span className="font-bold">{rating}.00</span>
           </p>
-          <div className="flex flex-col md:flex-row gap-5  justify-end">
-            <div className="card-actions justify-end">
-              <button
-                onClick={() => handleAddtoCart(_id)}
-                className="btn btn-primary"
-              >
-                Add to Cart
-              </button>
-            </div>
-            <Link
-              to={`/updateProduct/${_id}`}
-              className="card-actions justify-end"
+
+          <div className="card-actions justify-end">
+            <button
+              onClick={() => handleAddtoCart(_id)}
+              className="btn btn-primary"
             >
-              <button className="btn btn-primary">Update Details</button>
-            </Link>
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>

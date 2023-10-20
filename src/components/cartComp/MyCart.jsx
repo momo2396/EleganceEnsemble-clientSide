@@ -7,9 +7,14 @@ const MyCart = () => {
   const { user } = useContext(AuthContext);
   const [product, setProduct] = useState(null);
   useEffect(() => {
-    fetch(`http://localhost:5000/my-cart?email=${user?.email}`)
+    fetch(
+      `https://brand-shop-server-side-b8a10.vercel.app/my-cart?email=${user?.email}`
+    )
       .then((res) => res.json())
-      .then((data) => setProduct(data.cart));
+      .then((data) => {
+        console.log(data);
+        setProduct(data?.success === false ? null : data.cart);
+      });
   }, [user, count]);
   return (
     <div>

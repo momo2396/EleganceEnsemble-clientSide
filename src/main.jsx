@@ -39,7 +39,9 @@ const router = createBrowserRouter([
         path: "/brandProducts/:brand",
         element: <BrandProducts></BrandProducts>,
         loader: async ({ params }) =>
-          fetch(`http://localhost:5000/product/${params.brand}`),
+          fetch(
+            `https://brand-shop-server-side-b8a10.vercel.app/product/${params.brand}`
+          ),
       },
       {
         path: "/profile",
@@ -57,7 +59,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: async ({ params }) =>
-          fetch(`http://localhost:5000/single-product?id=${params.id}`),
+          fetch(
+            `https://brand-shop-server-side-b8a10.vercel.app/single-product?id=${params.id}`
+          ),
       },
       {
         path: "/myCart",
@@ -83,7 +87,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: async ({ params }) =>
-          fetch(`http://localhost:5000/single-product?id=${params.id}`),
+          fetch(
+            `https://brand-shop-server-side-b8a10.vercel.app/single-product?id=${params.id}`
+          ),
       },
     ],
   },

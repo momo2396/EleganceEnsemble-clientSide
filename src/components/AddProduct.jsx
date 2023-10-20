@@ -15,7 +15,7 @@ const AddProduct = () => {
     const details = form.details.value;
     const newProduct = { name, brand, type, image, price, rating, details };
     // console.log(newProduct);
-    fetch("http://localhost:5000/product", {
+    fetch("https://brand-shop-server-side-b8a10.vercel.app/product", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -27,9 +27,20 @@ const AddProduct = () => {
         if (data.insertedId) {
           swal.fire({
             title: "Success!",
-            text: "You inserted the product!",
+            text: "You added the product!",
             icon: "success",
             confirmButtonText: "Cool",
+          });
+          e.target.reset();
+          e.target.brand.value = null;
+          e.target.type.value = null;
+          e.target.rating.value = null;
+        } else {
+          swal.fire({
+            title: "Error!",
+            text: "Product add failed!",
+            icon: "error",
+            confirmButtonText: "Close",
           });
         }
       });
@@ -65,10 +76,11 @@ const AddProduct = () => {
                 type="text"
                 name="brand"
                 className="select input input-bordered"
+                required
               >
-                <option required disabled selected>
+                {/* <option disabled selected>
                   brand of product
-                </option>
+                </option> */}
                 <option value="L'Oréal">L'Oréal</option>
                 <option value="Estée Lauder">Estée Lauder</option>
                 <option value="MAC Cosmetics">MAC Cosmetics</option>
@@ -89,9 +101,9 @@ const AddProduct = () => {
                 className="select input input-bordered"
                 required
               >
-                <option disabled selected>
+                {/* <option disabled selected>
                   type of product
-                </option>
+                </option> */}
                 <option value="Lipstick">Lipstick</option>
                 <option value="Foundation">Foundation</option>
                 <option value="Mascara">Mascara</option>
@@ -136,9 +148,9 @@ const AddProduct = () => {
                 className="select input input-bordered"
                 required
               >
-                <option disabled selected>
+                {/* <option disabled selected>
                   rating of product
-                </option>
+                </option> */}
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>

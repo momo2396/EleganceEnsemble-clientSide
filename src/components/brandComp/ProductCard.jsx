@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
-  const { _id, brand, type, image, rating, name, price } = product;
+  const { _id, name, image, price, brand, type, rating } = product;
   const handleDetails = (id) => {
-    fetch(`http://localhost:5000/product/${id}`)
+    fetch(`https://brand-shop-server-side-b8a10.vercel.app/product/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -23,19 +23,27 @@ const ProductCard = ({ product }) => {
           Costemic Type: <span className="font-bold">{type}</span>
         </p>
         <p className="text-lg">
-          Price of Product: <span className="font-bold">{price}</span>
+          Price of Product: $ <span className="font-bold">{price}</span>
         </p>
         <p className="text-lg">
           Rating of Product: <span className="font-bold">{rating}.00</span>
         </p>
-        <Link to={`/details/${_id}`} className="card-actions justify-end">
-          <button
-            onClick={() => handleDetails(_id)}
-            className="btn btn-primary"
+        <div className="flex flex-col md:flex-row gap-5  justify-end">
+          <Link to={`/details/${_id}`} className="card-actions justify-end">
+            <button
+              onClick={() => handleDetails(_id)}
+              className="btn btn-primary"
+            >
+              view Details
+            </button>
+          </Link>
+          <Link
+            to={`/updateProduct/${_id}`}
+            className="card-actions justify-end"
           >
-            view Details
-          </button>
-        </Link>
+            <button className="btn btn-primary">Update Details</button>
+          </Link>
+        </div>
       </div>
     </div>
   );

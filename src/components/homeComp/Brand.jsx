@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Brand = ({ b }) => {
   const { brand, image } = b;
   const handleBrand = (brand) => {
-    fetch(`http://localhost:5000/product/${brand}`)
+    fetch(`https://brand-shop-server-side-b8a10.vercel.app/product/${brand}`)
       .then((res) => res.json())
       .then(() => {
         // console.log(data);

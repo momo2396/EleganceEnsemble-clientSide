@@ -1,8 +1,15 @@
-# React + Vite
+# About Project :
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- It is a brand shop related website. My website is about beauty brand shop. 8 Brands are included here. A logo, some private routes are implemented on navbar.
+- If i click one of the brands, it redirects to the brand page, where some brands include at least 4 products. Some brands do not have any product. Advertisement images are included.
+  here.
 
-Currently, two official plugins are available:
+- If i click one of the products, then it will redirect to the details page, which is private. It will be accessed only when a user is logged in.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Without being logged in, the private routes will redirect to login page.
+
+- Email pass and gmail authentication are implemented.
+
+# Live Link:
+
+https://brand-shop-client-1a3b1.web.app/

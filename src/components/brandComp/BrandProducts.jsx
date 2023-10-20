@@ -4,13 +4,13 @@ import AdSlider from "./AdSlider";
 
 const BrandProducts = () => {
   const products = useLoaderData();
-  const len = products.length;
+  const len = products?.length;
   return (
     <div>
       <AdSlider></AdSlider>
       {len > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 px-5 py-10">
-          {products.map((product) => (
+          {products?.map((product) => (
             <ProductCard key={product._id} product={product}></ProductCard>
           ))}
         </div>

@@ -146,7 +146,7 @@ const Navbar = () => {
             <img src={logo} className="h-32"></img>
             <Link to="/" className="font-bold normal-case text-xl lg:text-3xl">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#a294cd] to-[#ffe5de]">
-                Elegance Ensemble {dark ? "true" : "false"}
+                Elegance Ensemble
               </span>
             </Link>
           </div>
