@@ -18,7 +18,6 @@ const Details = () => {
       }
     );
     const data = await res.json();
-    console.log(data);
     if (data.success) {
       Swal.fire({
         title: "Success!",

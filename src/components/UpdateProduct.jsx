@@ -2,9 +2,7 @@ import { useLoaderData, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const UpdateProduct = () => {
-  const products = useLoaderData();
-  const { id } = useParams();
-  const product = products.find((product) => product._id == id);
+  const product = useLoaderData();
   const { _id, name, image, price, brand, type, rating, details } = product;
   const handleUpdate = (e) => {
     e.preventDefault();
