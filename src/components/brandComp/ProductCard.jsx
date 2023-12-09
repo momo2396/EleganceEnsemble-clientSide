@@ -11,7 +11,7 @@ const ProductCard = ({ product }) => {
   };
   return (
     <div className="px-3 py-5 card lg:card-side bg-[#ac9ed5] shadow-xl">
-      <figure>
+      <figure> 
         <img className="w-fit h-56" src={image} />
       </figure>
       <div className="text-[#ffe5de] card-body flex flex-col gap-3 justify-center items-center font-serif">
